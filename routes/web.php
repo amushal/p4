@@ -19,7 +19,14 @@ Route::get('/', function () {
     }
 });
 
+Auth::routes();
 
+Route::group(['middleware' => ['web','auth']], function () {
+
+    Route::get('/home', ['as' => 'index','uses' => 'HomeController@index']);
+
+
+});
 
 Route::get('/debug', function () {
 

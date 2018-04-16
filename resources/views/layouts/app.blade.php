@@ -85,7 +85,7 @@
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
-                        <form method="GET" action="{{ route('contacts.search') }}">
+                        <form method="GET" action="">
 
                         <div class="input-group">
                             <input id="search" type="text" class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}" placeholder='Search...' name="search" value="{{ old('Search') }}" required autofocus>
@@ -104,7 +104,7 @@
                     <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                 </li>
                 <li>
-                    <a href="{{route('contacts.index')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
+                    Contacts
                 </li>
             </ul>
         </div>
