@@ -1,23 +1,38 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+@section('title')
+    Home
+@endsection
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+@section('page-header')
+    Home
+@endsection
 
-                    You are logged in!
+@section('page-content')
+    <div class="row">
+        <div class="col-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    Info
+                </div>
+                <div class="panel-body">
+                    <p>Project 4 prototype</p>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    Features:
+                </div>
+                <div class="panel-body">
+                    <p>Search, and CRUD: Create, Read, Update and Delete.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
