@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="My Contacts">
     <meta name="author" content="Ala Mushal">
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
 
-    <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -24,14 +22,7 @@
 
     <link href="/css/styles.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-{{--
-
-    <script src="{{ URL::asset('js/jquery.js') }}"></script>
-    <script src="{{ URL::asset('jquery/src/jquery-ui.min.js') }}"></script>
---}}
 
     @yield('header-scripts')
 
@@ -39,7 +30,6 @@
 
 <body id="wrapper">
 
-<!-- Navigation -->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,12 +38,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <!-- Branding Image -->
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'MyContacts') }}
         </a>
     </div>
-    <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
         <!-- /.dropdown -->
@@ -74,18 +62,15 @@
                     </form>
                 </li>
             </ul>
-            <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
     </ul>
-    <!-- /.navbar-top-links -->
 
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
-                        <form method="GET" action="">
+                        <form method="GET" action="search">
 
                         <div class="input-group">
                             <input id="search" type="text" class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}" placeholder='Search...' name="search" value="{{ old('Search') }}" required autofocus>
@@ -98,19 +83,16 @@
                         </div>
                         </form>
                     </div>
-                    <!-- /input-group -->
                 </li>
                 <li>
                     <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                 </li>
                 <li>
-                    Contacts
+                    <a href="{{url('/')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
                 </li>
             </ul>
         </div>
-        <!-- /.sidebar-collapse -->
     </div>
-    <!-- /.navbar-static-side -->
 </nav>
 
 <div id="page-wrapper">
@@ -124,22 +106,11 @@
     @yield('page-content')
 
 </div>
-<!-- /#page-wrapper -->
 
 <script src="{{ URL::asset('jquery/dist/jquery.min.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- Metis Menu Plugin JavaScript -->
-{{--
-<script src="{{ URL::asset('bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
---}}
-
-<!-- Custom Theme JavaScript -->
-{{--
-<script src="{{ URL::asset('dist/js/sb-admin-2.js') }}"></script>
---}}
 
 @yield('footer-scripts')
 
