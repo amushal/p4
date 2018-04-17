@@ -23,9 +23,10 @@ Auth::routes();
 
 Route::group(['middleware' => ['web','auth']], function () {
 
-    Route::get('/home', ['as' => 'index','uses' => 'HomeController@index']);
-
-
+    Route::get('/index', 'HomeController@index');
+    #Route::get('contacts.search', 'ContactController@search');
+    Route::get('contacts.search', 'ContactController@search')->name('contacts.search');
+    Route::get('/contacts/index','ContactController@index')->name('contacts.index');
 });
 
 Route::get('/debug', function () {

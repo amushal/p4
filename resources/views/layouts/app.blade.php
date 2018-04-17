@@ -47,7 +47,7 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
                 <li>
@@ -70,17 +70,24 @@
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
-                        <form method="GET" action="search">
+                        <form method="GET" action="{{ route('contacts.search') }}">
 
-                        <div class="input-group">
-                            <input id="search" type="text" class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}" placeholder='Search...' name="search" value="{{ old('Search') }}" required autofocus>
+                            <div class="input-group">
+                                <input id="search"
+                                       type="text"
+                                       class="form-control{{ $errors->has('search') ? ' is-invalid' : '' }}"
+                                       placeholder='Search...'
+                                       name="search"
+                                       value="{{ old('Search') }}"
+                                       required
+                                       autofocus>
 
-                            <span class="input-group-btn">
+                                <span class="input-group-btn">
                                         <button class="btn btn-default" type="submit">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </span>
-                        </div>
+                            </div>
                         </form>
                     </div>
                 </li>
@@ -88,7 +95,7 @@
                     <a href="{{url('/')}}"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                 </li>
                 <li>
-                    <a href="{{url('/')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
+                    <a href="{{route('contacts.index')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
                 </li>
             </ul>
         </div>

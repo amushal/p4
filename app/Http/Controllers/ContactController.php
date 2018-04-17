@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use Illuminate\Http\Request;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -82,4 +82,11 @@ class ContactsController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+    {
+        //
+    }
+
+
 }
