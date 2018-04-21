@@ -26,7 +26,13 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('/index', 'HomeController@index');
     #Route::get('contacts.search', 'ContactController@search');
     Route::get('contacts.search', 'ContactController@search')->name('contacts.search');
-    Route::get('/contacts/index','ContactController@index')->name('contacts.index');
+    Route::get('contacts.index','ContactController@index')->name('contacts.index');
+    Route::get('contacts.add', 'ContactController@add')->name('contacts.add');
+    Route::get('contacts.edit','ContactController@edit')->name('contacts.edit');
+    Route::post('contacts.save','ContactController@save')->name('contacts.save');
+    Route::patch('contacts.update', 'ContactController@update')->name('contacts.update');
+    Route::delete('contacts.destroy', 'ContactController@destroy')->name('contacts.destroy');
+
 });
 
 Route::get('/debug', function () {

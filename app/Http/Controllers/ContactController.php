@@ -8,85 +8,72 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        $contacts = Contact::paginate(50);
+
         return view('contacts.index', compact('contacts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add()
     {
-        //
+        return view('contacts.add');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function edit(Contact $contact_id)
     {
-        //
+        $contact = $contact_id;
+
+        return view('contacts.edit', compact('contact'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
+    public function save(Request $request)
     {
-        //
+        $contacts = Contact::create($request->all());
+
+        flash($contacts->name.' is saved.', 'success');
+
+        return redirect()->route('contacts.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
+    public function update(Request $request, Contact $contact_id)
     {
-        //
+        $contact_id->update($request->all());
+
+        flash($contact_id->name.' is updated.', 'success');
+
+        return redirect()->route('contacts.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contact $contact)
+    public function destroy(Contact $contact_id)
     {
-        //
+        $contact_id->delete();
+
+        flash($contact_id->name.' is deleted.', 'success');
+
+        return redirect()->route('contacts.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
-    {
-        //
-    }
+    public function search(Request $request){
 
-    public function search(Request $request)
-    {
-        //
-    }
+        $contacts = Contact::where('name', 'LIKE', '%'.$request->get('search').'%')
+            ->orWhere('description', 'LIKE', '%'.$request->get('search').'%')
+            ->paginate(50);
 
+        return view('contacts.index', compact('contacts'));
+    }
 
 }

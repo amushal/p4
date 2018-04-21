@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('title')
-    Edit Book
+    Edit Contact
 @endsection
 
 @section('page-header')
-    Edit Book
+    Edit Contact
 @endsection
 
 @section('page-content')
     <div class="row">
         <div class="col-md-6">
-            {!! Form::model($book, ['method' => 'PATCH', 'route' => ['books.update', $book->id], 'class' => 'form-horizontal form-label-left', 'data-parsley-validate']) !!}
+            {!! Form::model($contact, ['method' => 'PATCH', 'route' => ['contacts.update', $contact->id], 'class' => 'form-horizontal form-label-left', 'data-parsley-validate']) !!}
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Name
                 </label>
@@ -31,7 +31,7 @@
             <div class="ln_solid"></div>
             <div class="form-group">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <a href="{{ route('books.index') }}" type="button" class="btn btn-primary">Cancel</a>
+                    <a href="{{ route('contacts.index') }}" type="button" class="btn btn-primary">Cancel</a>
                     {!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
                 </div>
             </div>
