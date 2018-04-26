@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
-@section('title')
-    Contacts
-@endsection
-
 @section('page-header')
-    Contacts <a href="{{ route('contacts.add') }}" type="button" class="btn btn-sm btn-success">Add Contact</a>
+    <a href="{{ route('contacts.add') }}" type="button" class="btn btn-sm btn-success">Add Contact</a>
 @endsection
 
 @section('page-content')
