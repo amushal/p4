@@ -41,7 +41,8 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                    <input type="checkbox"
+                           name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
                 </label>
             </div>
 
@@ -54,7 +55,7 @@
                 {{ __('Forgot Your Password?') }}
             </a>
 
-            <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+            <div>Don't have an account? <a href='/register'>Register here...</a></div>
 
         </form>
     </div>

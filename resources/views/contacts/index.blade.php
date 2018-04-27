@@ -26,36 +26,49 @@
                             </tr>
                             </thead>
                             <tbody>
-                                @foreach($contacts as $contact)
-                                    <tr>
-                                        <td>{{$contact->id?$contact->id:''}}</td>
-                                        <td>{{$contact->name?$contact->name:''}}</td>
-                                        <td>{{$contact->description?$contact->description:''}}</td>
-                                        <td>
-                                            <a href="{{route('contacts.edit', [$contact->id])}}" title="Edit" class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></a>
-                                            <a type="button" class="btn btn-default btn-sm" title="Delete" data-toggle="modal" data-target="#deleteModal{{ $contact->id }}"><i class="fa fa-trash"></i></a>
-                                            <div id="deleteModal{{ $contact->id }}" class="modal fade" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title">Confirm Delete</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Delete contact?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                            {!! Form::open(['route' => ['contacts.destroy', $contact->id], 'method' => 'delete']) !!}
-                                                            {!! Form::submit('Yes', ['class' => 'btn btn-success btn-flat']) !!}
-                                                            {!! Form::close() !!}
-                                                        </div>
+                            @foreach($contacts as $contact)
+                                <tr>
+                                    <td>{{$contact->id?$contact->id:''}}</td>
+                                    <td>{{$contact->name?$contact->name:''}}</td>
+                                    <td>{{$contact->description?$contact->description:''}}</td>
+                                    <td>
+                                        <a href="{{route('contacts.edit', [$contact->id])}}"
+                                           title="Edit"
+                                           class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></a>
+                                        <a type="button"
+                                           class="btn btn-default btn-sm"
+                                           title="Delete"
+                                           data-toggle="modal"
+                                           data-target="#deleteModal{{ $contact->id }}"><i class="fa fa-trash"></i></a>
+                                        <div id="deleteModal{{ $contact->id }}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button"
+                                                                class="close"
+                                                                data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title">Confirm Delete</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Delete contact?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button"
+                                                                class="btn btn-default pull-left"
+                                                                data-dismiss="modal">Close
+                                                        </button>
+                                                        {!! Form::open(['route' => ['contacts.destroy', $contact->id], 'method' => 'delete']) !!}
+                                                        {!! Form::submit('Yes', ['class' => 'btn btn-success btn-flat']) !!}
+                                                        {!! Form::close() !!}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

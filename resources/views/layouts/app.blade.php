@@ -47,20 +47,27 @@
         <!-- /.dropdown -->
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                <i class="fa fa-user fa-fw"></i> @if (Auth::check()) {{ Auth::user()->name }} @endif
+                <i class="fa fa-caret-down"></i>
+
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li>
-                    <a href="{{ url('/logout') }}"
-                       onclick="event.preventDefault();
+                @if (Auth::guest())
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Register</a></li>
+                @else
+                    <li>
+                        <a href="{{ url('/logout') }}"
+                           onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out fa-fw"></i> Logout
-                    </a>
+                            <i class="fa fa-sign-out fa-fw"></i> Logout
+                        </a>
 
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </li>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                @endif
             </ul>
         </li>
     </ul>
@@ -120,6 +127,7 @@
 <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
 
 @yield('footer-scripts')
+
 
 </body>
 </html>
