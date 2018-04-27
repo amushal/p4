@@ -17,4 +17,10 @@ class Contact extends Model
         'zip',
         'description'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }

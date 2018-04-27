@@ -21,9 +21,13 @@ class ContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::paginate(50);
+        $user = $request->user();
+        $contacts = $user->contacts()->paginate(50);
+
+
+        //$contacts = Contact::paginate(50);
 
         return view('contacts.index', compact('contacts'));
     }
