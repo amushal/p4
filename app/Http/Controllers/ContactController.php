@@ -50,10 +50,10 @@ class ContactController extends Controller
         //return view('contacts.add');
     }
 
-    public function edit($contact_id)
+    public function edit($id)
     {
         # Get this contact and eager load its tags
-        $contact = Contact::with('tags')->find($contact_id);
+        $contact = Contact::with('tags')->find($id);
 
         # Handle the case where we can't find the given contact
         if (!$contact) {
@@ -84,14 +84,17 @@ class ContactController extends Controller
             'group_id' => 'required'
         ], $messages);
 
-        //$contacts = Contact::create($request->all());
+        //$contact = Contact::create($request->all());
+        $user = $request->user();
+
         # Save the contact to the database
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->group_id = $request->group_id;
+        $contact->user_id = $user->id;
         $contact->mobile_phone = $request->mobile_phone;
         $contact->home_phone = $request->home_phone;
-
+        $contact->description = $request->description;
         $contact->address = $request->address;
         $contact->city = $request->city;
         $contact->state = $request->state;
@@ -107,7 +110,7 @@ class ContactController extends Controller
         return redirect()->route('contacts.index');
     }
 
-    public function update(Request $request, Contact $contact_id)
+    public function update(Request $request, $id)
     {
 //        $contact_id->update($request->all());
 //
@@ -121,13 +124,13 @@ class ContactController extends Controller
         ];
         $this->validate($request, [
             'name' => 'required',
-            'home_phone' => 'required|digits:10',
-            'mobile_phone' => 'required|digits:10',
+            'home_phone' => 'required',
+            'mobile_phone' => 'required',
             'group_id' => 'required'
         ], $messages);
 
         # Fetch the contact we want to update
-        $contact = Contact::find($contact_id);
+        $contact = Contact::find($id);
         # Update data
         $contact->name = $request->name;
         $contact->group_id = $request->group_id;
@@ -140,17 +143,18 @@ class ContactController extends Controller
         $contact->zip = $request->zip;
         $contact->tags()->sync($request->input('tags'));
         # Save edits
-        $contact->save();
+        $contact->update();
+//        $contact_id->update($contact);
 
-        flash($contact_id->name.' is updated.', 'success');
+        flash($contact->name.' is updated.', 'success');
         # Send the user back to the edit page in case they want to make more edits
         return redirect()->route('contacts.index');
     }
 
-    public function destroy($contact_id)
+    public function destroy($id)
     {
 
-        $contact = Contact::find($contact_id);
+        $contact = Contact::find($id);
         # Before we delete the contact we have to delete any tag associations
         $contact->tags()->detach();
 
