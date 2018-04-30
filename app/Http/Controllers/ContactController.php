@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
 use Illuminate\Http\Request;
+use App\Contact;
+use App\Group;
+use App\Tag;
 
 class ContactController extends Controller
 {
@@ -24,7 +26,12 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $contacts = $user->contacts()->paginate(50);
+
+        if ($user) {
+            $contacts = $user->contacts()->paginate(50);
+        } else {
+            $contacts = [];
+        }
 
 
         //$contacts = Contact::paginate(50);
@@ -32,41 +39,123 @@ class ContactController extends Controller
         return view('contacts.index', compact('contacts'));
     }
 
-    public function add()
+    public function create()
     {
-        return view('contacts.add');
+        return view('contacts.create')->with([
+            'groupsForDropdown' => Group::getForDropdown(),
+            'tagsForCheckboxes' => Tag::getForCheckboxes(),
+            'contact' => new Contact(),
+            'tags' => [],
+        ]);
+        //return view('contacts.add');
     }
 
-    public function edit(Contact $contact_id)
+    public function edit($contact_id)
     {
-        $contact = $contact_id;
+        # Get this contact and eager load its tags
+        $contact = Contact::with('tags')->find($contact_id);
 
-        return view('contacts.edit', compact('contact'));
+        # Handle the case where we can't find the given contact
+        if (!$contact) {
+            flash($contact->name.' not found.', 'error');
+            return redirect('/contacts');
+        }
+
+        //return view('contacts.edit', compact('contact'));
+
+        return view('contacts.edit')->with([
+            'groupsForDropdown' => Group::getForDropdown(),
+            'tagsForCheckboxes' => Tag::getForCheckboxes(),
+            'tags' => $contact->tags()->pluck('tags.id')->toArray(),
+            'contact' => $contact
+        ]);
     }
 
-    public function save(Request $request)
+    public function store(Request $request)
     {
-        $contacts = Contact::create($request->all());
+        # Custom validation messages
+        $messages = [
+            'group_id.required' => 'The group field is required.',
+        ];
+        $this->validate($request, [
+            'name' => 'required',
+            'home_phone' => 'required|digits:10',
+            'mobile_phone' => 'required|digits:10',
+            'group_id' => 'required'
+        ], $messages);
 
-        flash($contacts->name.' is saved.', 'success');
+        //$contacts = Contact::create($request->all());
+        # Save the contact to the database
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->group_id = $request->group_id;
+        $contact->mobile_phone = $request->mobile_phone;
+        $contact->home_phone = $request->home_phone;
+
+        $contact->address = $request->address;
+        $contact->city = $request->city;
+        $contact->state = $request->state;
+        $contact->zip = $request->zip;
+
+        $contact->save();
+
+        $contact->tags()->sync($request->input('tags'));
+
+
+        flash($contact->name.' is saved.', 'success');
 
         return redirect()->route('contacts.index');
     }
 
     public function update(Request $request, Contact $contact_id)
     {
-        $contact_id->update($request->all());
+//        $contact_id->update($request->all());
+//
+//        flash($contact_id->name.' is updated.', 'success');
+//
+//        return redirect()->route('contacts.index');
+
+        # Custom validation messages
+        $messages = [
+            'group_id.required' => 'The group field is required.',
+        ];
+        $this->validate($request, [
+            'name' => 'required',
+            'home_phone' => 'required|digits:10',
+            'mobile_phone' => 'required|digits:10',
+            'group_id' => 'required'
+        ], $messages);
+
+        # Fetch the contact we want to update
+        $contact = Contact::find($contact_id);
+        # Update data
+        $contact->name = $request->name;
+        $contact->group_id = $request->group_id;
+        $contact->mobile_phone = $request->mobile_phone;
+        $contact->home_phone = $request->home_phone;
+
+        $contact->address = $request->address;
+        $contact->city = $request->city;
+        $contact->state = $request->state;
+        $contact->zip = $request->zip;
+        $contact->tags()->sync($request->input('tags'));
+        # Save edits
+        $contact->save();
 
         flash($contact_id->name.' is updated.', 'success');
-
+        # Send the user back to the edit page in case they want to make more edits
         return redirect()->route('contacts.index');
     }
 
-    public function destroy(Contact $contact_id)
+    public function destroy($contact_id)
     {
-        $contact_id->delete();
 
-        flash($contact_id->name.' is deleted.', 'success');
+        $contact = Contact::find($contact_id);
+        # Before we delete the contact we have to delete any tag associations
+        $contact->tags()->detach();
+
+        $contact->delete();
+        flash($contact->name . ' is deleted.', 'success');
 
         return redirect()->route('contacts.index');
     }

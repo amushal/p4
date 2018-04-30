@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-header')
-    <a href="{{ route('contacts.add') }}" type="button" class="btn btn-sm btn-success">Add Contact</a>
+    <a href="{{ route('contacts.create') }}" type="button" class="btn btn-sm btn-success">Add Contact</a>
 @endsection
 
 @section('page-content')
@@ -20,7 +20,16 @@
                             <thead>
                             <tr>
                                 <th style="width: 5%">ID</th>
-                                <th style="width: 25%">Name</th>
+                                <th style="width: 20%">Name</th>
+                                <th style="width: 15%">Mobile</th>
+                                <th style="width: 15%">Home</th>
+
+                                <th style="width: 20%">Address</th>
+                                <th style="width: 5%">City</th>
+                                <th>State</th>
+                                <th>Zip</th>
+                                <th>Group</th>
+
                                 <th>Description</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
@@ -30,6 +39,13 @@
                                 <tr>
                                     <td>{{$contact->id?$contact->id:''}}</td>
                                     <td>{{$contact->name?$contact->name:''}}</td>
+                                    <td>{{$contact->mobile_phone?$contact->mobile_phone:''}}</td>
+                                    <td>{{$contact->home_phone?$contact->home_phone:''}}</td>
+                                    <td>{{$contact->address?$contact->address:''}}</td>
+                                    <td>{{$contact->city?$contact->city:''}}</td>
+                                    <td>{{$contact->state?$contact->state:''}}</td>
+                                    <td>{{$contact->zip?$contact->zip:''}}</td>
+                                    <td>{{$contact->group->getName()?$contact->group->getName():''}}</td>
                                     <td>{{$contact->description?$contact->description:''}}</td>
                                     <td>
                                         <a href="{{route('contacts.edit', [$contact->id])}}"

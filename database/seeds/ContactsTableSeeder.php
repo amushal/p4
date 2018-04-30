@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Contact;
 use App\User;
+use App\Group;
 
 class ContactsTableSeeder extends Seeder
 {
@@ -25,12 +26,17 @@ class ContactsTableSeeder extends Seeder
         //todo: use generic test/guest account
         $user_id = User::where('name', '=', 'Ala Mushal')->pluck('id')->first(); //temp
 
+        # Find that author in the authors table
+        //$name = $contacts[0];
+        $group_id = Group::where('name', '=', 'Family')->pluck('id')->first();
+
         foreach ($contacts as $contactData) {
 
             $contact = new Contact();
             $contact->created_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $contact->updated_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $contact->user_id = $user_id;
+            $contact->group_id = $group_id;
             $contact->name = $contactData[0];
             $contact->home_phone = $contactData[1];
             $contact->mobile_phone = $contactData[2];
