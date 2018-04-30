@@ -4,6 +4,10 @@
     Register
 @endsection
 
+@section('page-header')
+    Register
+@endsection
+
 @section('page-content')
 
 

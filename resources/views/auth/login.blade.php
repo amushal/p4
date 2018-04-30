@@ -4,6 +4,10 @@
     Login
 @endsection
 
+@section('page-header')
+    Login
+@endsection
+
 @section('page-content')
 
     <div class='form-container'>

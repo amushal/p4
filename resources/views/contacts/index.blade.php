@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('title')
+    Contacts
+@endsection
+
 @section('page-header')
-    <a href="{{ route('contacts.create') }}" type="button" class="btn btn-sm btn-success">Add Contact</a>
+    <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-success">Add Contact</a>
 @endsection
 
 @section('page-content')
@@ -51,8 +55,7 @@
                                         <a href="{{route('contacts.edit', [$contact->id])}}"
                                            title="Edit"
                                            class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></a>
-                                        <a type="button"
-                                           class="btn btn-default btn-sm"
+                                        <a class="btn btn-default btn-sm"
                                            title="Delete"
                                            data-toggle="modal"
                                            data-target="#deleteModal{{ $contact->id }}"><i class="fa fa-trash"></i></a>
