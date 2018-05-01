@@ -136,7 +136,7 @@ class ContactController extends Controller
         $contact->group_id = $request->group_id;
         $contact->mobile_phone = $request->mobile_phone;
         $contact->home_phone = $request->home_phone;
-
+        $contact->description = $request->description;
         $contact->address = $request->address;
         $contact->city = $request->city;
         $contact->state = $request->state;

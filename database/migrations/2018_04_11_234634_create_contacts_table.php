@@ -23,7 +23,7 @@ class CreateContactsTable extends Migration
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
-            $table->string('description');
+            $table->string('description')->nullable();
         });
     }
 
