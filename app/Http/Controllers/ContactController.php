@@ -11,7 +11,6 @@ class ContactController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -20,23 +19,13 @@ class ContactController extends Controller
     }
 
     /**
-     *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $contacts)
     {
-        $user = $request->user();
-
-        if ($user) {
-            $contacts = $user->contacts()->paginate(50);
-        } else {
-            $contacts = [];
-        }
-
-
         //$contacts = Contact::paginate(50);
-
-        return view('contacts.index', compact('contacts'));
+        $tags = Tag::getForCheckboxes();
+        return view('contacts.index', compact('contacts', 'tags'));
     }
 
     public function create()
@@ -57,7 +46,8 @@ class ContactController extends Controller
 
         # Handle the case where we can't find the given contact
         if (!$contact) {
-            flash($contact->name.' not found.', 'error');
+            flash($contact->name . ' not found.', 'error');
+
             return redirect('/contacts');
         }
 
@@ -104,8 +94,7 @@ class ContactController extends Controller
 
         $contact->tags()->sync($request->input('tags'));
 
-
-        flash($contact->name.' is saved.', 'success');
+        flash($contact->name . ' is saved.', 'success');
 
         return redirect()->route('contacts.index');
     }
@@ -146,14 +135,14 @@ class ContactController extends Controller
         $contact->update();
 //        $contact_id->update($contact);
 
-        flash($contact->name.' is updated.', 'success');
+        flash($contact->name . ' is updated.', 'success');
+
         # Send the user back to the edit page in case they want to make more edits
         return redirect()->route('contacts.index');
     }
 
     public function destroy($id)
     {
-
         $contact = Contact::find($id);
         # Before we delete the contact we have to delete any tag associations
         $contact->tags()->detach();
@@ -164,10 +153,10 @@ class ContactController extends Controller
         return redirect()->route('contacts.index');
     }
 
-    public function search(Request $request){
-
-        $contacts = Contact::where('name', 'LIKE', '%'.$request->get('search').'%')
-            ->orWhere('description', 'LIKE', '%'.$request->get('search').'%')
+    public function search(Request $request)
+    {
+        $contacts = Contact::where('name', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('description', 'LIKE', '%' . $request->get('search') . '%')
             ->paginate(50);
 
         return view('contacts.index', compact('contacts'));

@@ -33,7 +33,7 @@ class Contact extends Model
     public function tags()
     {
         # With timestamps() will ensure the pivot table has its created_at/updated_at fields automatically maintained
-        return $this->belongsToMany('App\Tag')->withTimestamps();
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
     /*
     * Dump the essential details of contacts to the page

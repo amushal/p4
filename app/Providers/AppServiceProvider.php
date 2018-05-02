@@ -14,6 +14,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Schema::defaultStringLength(191);
+
+        //Cache all tags for menu
+        view()->composer('layouts.app', function($view) {
+            $tags = \App\Tag::has('contacts')->pluck('name');
+
+            $view -> with(compact('tags'));
+        });
     }
 
     /**

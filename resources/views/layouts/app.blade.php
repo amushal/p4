@@ -103,6 +103,30 @@
                 <li>
                     <a href="{{route('contacts.index')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
                 </li>
+                @if (Auth::check())
+                    <li>
+                        <a><i class="fa fa-th-list ffa fa-tags"></i> Tags</a>
+                            <ul>
+                                <li class='tags'>
+                                    @foreach($tags as $tag)
+
+                                    <div>
+                                        <a href="/contacts/tags/{{ $tag }}"><i class="fa fa-tag"></i> {{ $tag }}</a>
+                                    </div>
+
+                                    @endforeach
+
+                                </li>
+                            </ul>
+                        {{--<ul>--}}
+                        {{--<li class='tags'>                       --}}
+                        {{--<a href="{{route('contacts.index')}}"><i class="fa fa-tag"></i>--}}
+                        {{--Male</a>--}}
+                        {{--</li>--}}
+                        {{--</ul>--}}
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>
