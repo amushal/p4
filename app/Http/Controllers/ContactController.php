@@ -170,6 +170,12 @@ class ContactController extends Controller
     {
         $contacts = Contact::where('name', 'LIKE', '%' . $request->get('search') . '%')
             ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('mobile_phone', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('home_phone', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('address', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('city', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('state', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('zip', 'LIKE', '%' . $request->get('search') . '%')
             ->paginate(5);
 
         return view('contacts.index', compact('contacts'));
