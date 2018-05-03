@@ -24,6 +24,7 @@ class ContactController extends Controller
     public function index(Request $request, $contacts)
     {
         $tags = Tag::getForCheckboxes();
+
         return view('contacts.index', compact('contacts', 'tags'));
     }
 
@@ -64,13 +65,19 @@ class ContactController extends Controller
     {
         # Custom validation messages
         $messages = [
-            'group_id.required' => 'The group field is required.',
+            //'group_id.required' => 'The group field is required.',
+            'required' => 'Required',
         ];
+
         $this->validate($request, [
-            'name' => 'required',
-            'home_phone' => 'required|digits:10',
-            'mobile_phone' => 'required|digits:10',
+            'name' => 'required|alpha_spaces|max:50',
             'email' => 'required|email',
+            'mobile_phone' => 'required|numeric:max:10',
+            'home_phone' => 'nullable|numeric:max:10',
+            'address' => 'nullable|string|max:191',
+            'city' => 'nullable|alpha_spaces|max:50',
+            'state' => 'nullable|alpha_spaces|max:50',
+            'zip' => 'nullable|digits:5',
             'group_id' => 'required'
         ], $messages);
 
@@ -109,13 +116,18 @@ class ContactController extends Controller
 
         # Custom validation messages
         $messages = [
-            'group_id.required' => 'The group field is required.',
+            'required' => 'Required',
         ];
+
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|alpha_spaces|max:50',
             'email' => 'required|email',
-            'home_phone' => 'required',
-            'mobile_phone' => 'required',
+            'mobile_phone' => 'required|numeric:max:10',
+            'home_phone' => 'nullable|numeric:max:10',
+            'address' => 'nullable|string|max:191',
+            'city' => 'nullable|alpha_spaces|max:50',
+            'state' => 'nullable|alpha_spaces|max:50',
+            'zip' => 'nullable|digits:5',
             'group_id' => 'required'
         ], $messages);
 
