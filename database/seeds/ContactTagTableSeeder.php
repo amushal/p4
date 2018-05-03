@@ -9,9 +9,10 @@ class ContactTagTableSeeder extends Seeder
         # First, create an array of all the contacts we want to associate tags with
         # The *key* will be the contact name, and the *value* will be an array of tags.
         $contacts = [
-            'Ala Mushal' => ['man'],
-            'Jane Doe' => ['women', 'favorite'],
-            'Tony Balogne' => ['man']
+            'Ala Mushal' => ['Red'],
+            'Jane Doe' => ['Green', 'Red'],
+            'Richard Roe' => ['Yellow'],
+            'John Smith' => ['Green']
         ];
         # Now loop through the above array, creating a new pivot for each contact to tag
         foreach ($contacts as $name => $tags) {

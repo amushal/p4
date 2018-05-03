@@ -15,9 +15,9 @@ class TagController extends Controller
 
         if ($user) {
             if (empty($tag->toArray())) {
-                $contacts = $user->contacts()->paginate(50);
+                $contacts = $user->contacts()->paginate(5);
             } else {
-                $contacts = $tag->contacts()->paginate(50);
+                $contacts = $tag->contacts()->paginate(5);
             }
 
         } else {

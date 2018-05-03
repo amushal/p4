@@ -11,6 +11,7 @@ class GroupsTableSeeder extends Seeder
         # Array of author data to add
         $groups = [
             ['Family'],
+            ['Favorites'],
             ['Friends'],
             ['Work']
 

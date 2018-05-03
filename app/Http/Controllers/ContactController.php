@@ -23,7 +23,6 @@ class ContactController extends Controller
      */
     public function index(Request $request, $contacts)
     {
-        //$contacts = Contact::paginate(50);
         $tags = Tag::getForCheckboxes();
         return view('contacts.index', compact('contacts', 'tags'));
     }
@@ -71,6 +70,7 @@ class ContactController extends Controller
             'name' => 'required',
             'home_phone' => 'required|digits:10',
             'mobile_phone' => 'required|digits:10',
+            'email' => 'required|email',
             'group_id' => 'required'
         ], $messages);
 
@@ -84,7 +84,7 @@ class ContactController extends Controller
         $contact->user_id = $user->id;
         $contact->mobile_phone = $request->mobile_phone;
         $contact->home_phone = $request->home_phone;
-        $contact->description = $request->description;
+        $contact->email = $request->email;
         $contact->address = $request->address;
         $contact->city = $request->city;
         $contact->state = $request->state;
@@ -113,6 +113,7 @@ class ContactController extends Controller
         ];
         $this->validate($request, [
             'name' => 'required',
+            'email' => 'required|email',
             'home_phone' => 'required',
             'mobile_phone' => 'required',
             'group_id' => 'required'
@@ -125,7 +126,7 @@ class ContactController extends Controller
         $contact->group_id = $request->group_id;
         $contact->mobile_phone = $request->mobile_phone;
         $contact->home_phone = $request->home_phone;
-        $contact->description = $request->description;
+        $contact->email = $request->email;
         $contact->address = $request->address;
         $contact->city = $request->city;
         $contact->state = $request->state;
@@ -156,8 +157,8 @@ class ContactController extends Controller
     public function search(Request $request)
     {
         $contacts = Contact::where('name', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('description', 'LIKE', '%' . $request->get('search') . '%')
-            ->paginate(50);
+            ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%')
+            ->paginate(5);
 
         return view('contacts.index', compact('contacts'));
     }

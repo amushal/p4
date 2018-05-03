@@ -24,17 +24,18 @@
                             <thead>
                             <tr>
                                 <th style="width: 5%">ID</th>
-                                <th style="width: 20%">Name</th>
+                                <th style="width: 15%">Name</th>
+                                <th>email</th>
+
                                 <th style="width: 15%">Mobile</th>
                                 <th style="width: 15%">Home</th>
 
                                 <th style="width: 20%">Address</th>
-                                <th style="width: 5%">City</th>
+                                <th style="width: 10%">City</th>
                                 <th>State</th>
                                 <th>Zip</th>
                                 <th>Group</th>
 
-                                <th>Description</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                             </thead>
@@ -43,6 +44,7 @@
                                 <tr>
                                     <td>{{$contact->id?$contact->id:''}}</td>
                                     <td>{{$contact->name?$contact->name:''}}</td>
+                                    <td>{{$contact->email?$contact->email:''}}</td>
                                     <td>{{$contact->mobile_phone?$contact->mobile_phone:''}}</td>
                                     <td>{{$contact->home_phone?$contact->home_phone:''}}</td>
                                     <td>{{$contact->address?$contact->address:''}}</td>
@@ -50,7 +52,6 @@
                                     <td>{{$contact->state?$contact->state:''}}</td>
                                     <td>{{$contact->zip?$contact->zip:''}}</td>
                                     <td>{{$contact->group->getName()?$contact->group->getName():''}}</td>
-                                    <td>{{$contact->description?$contact->description:''}}</td>
                                     <td>
                                         <a href="{{route('contacts.edit', [$contact->id])}}"
                                            title="Edit"

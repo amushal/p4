@@ -14,6 +14,14 @@
     </div>--}}
     @include('modules.error-field', ['field' => 'name'])
 </div>
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Email
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('email') ? ' has-error' : '' }}">
+        {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control col-md-7 col-xs-12']) !!}
+    </div>
+    @include('modules.error-field', ['field' => 'email'])
+</div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile_phone">Mobile
     </label>
@@ -74,14 +82,6 @@
             @endforeach
         </select>
     </div>
-</div>
-<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description
-    </label>
-    <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('description') ? ' has-error' : '' }}">
-        {!! Form::text('description', null, ['id' => 'description', 'class' => 'form-control col-md-7 col-xs-12']) !!}
-    </div>
-    @include('modules.error-field', ['field' => 'description'])
 </div>
 <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tag

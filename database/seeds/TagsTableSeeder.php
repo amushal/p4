@@ -5,7 +5,7 @@ class TagsTableSeeder extends Seeder
 {
     public function run()
     {
-        $tags = ['women', 'man', 'favorite'];
+        $tags = ['Red', 'Green', 'Yellow', 'Blue'];
         foreach ($tags as $tagName) {
             $tag = new Tag();
             $tag->name = $tagName;
