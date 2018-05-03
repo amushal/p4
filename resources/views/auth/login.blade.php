@@ -14,10 +14,8 @@
         <form class="form-signin" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
 
-            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-            <div class="form-group{{ $errors->has('email') ? ' is-invalid' : '' }}">
-                <label for="email" class="sr-only">{{ __('E-Mail Address') }}</label>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <label for="email">{{ __('E-Mail Address') }}</label>
 
                 <input id="email"
                        type="text"
@@ -31,8 +29,8 @@
 
             </div>
 
-            <div class="form-group{{ $errors->has('password') ? ' is-invalid' : '' }}">
-                <label for="password" class="sr-only">
+            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <label for="password">
                     {{ __('Password') }}
                 </label>
 

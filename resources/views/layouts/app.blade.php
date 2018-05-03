@@ -111,7 +111,7 @@
                                     @foreach($tags as $tag)
 
                                     <div>
-                                        <a href="/contacts/tags/{{ $tag }}"><i class="fa fa-tag"></i> {{ $tag }}</a>
+                                        <a href="/contacts/tags/{{ $tag }}"><i class="fa fa-circle" style="color:{{ $tag }}"></i> {{ $tag }}</a>
                                     </div>
 
                                     @endforeach

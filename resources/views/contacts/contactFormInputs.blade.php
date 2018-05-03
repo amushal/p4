@@ -4,15 +4,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('name') ? ' has-error' : '' }}">
         {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    {{--<div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('name') ? ' has-error' : '' }}">
-        <input type="text"
-               class="form-control"
-               placeholder="Contact name"
-               id="name"
-               name="name"
-               value="{{ old('name') }}">
-    </div>--}}
-    @include('modules.error-field', ['field' => 'name'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'name'])
+    </div>
 </div>
 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Email
@@ -20,7 +14,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('email') ? ' has-error' : '' }}">
         {!! Form::text('email', null, ['id' => 'email', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'email'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'email'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile_phone">Mobile
@@ -28,8 +24,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('mobile_phone') ? ' has-error' : '' }}">
         {!! Form::text('mobile_phone', null, ['id' => 'mobile_phone', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'mobile_phone'])
-
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'mobile_phone'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="home_phone">Home Phone
@@ -37,7 +34,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('home_phone') ? ' has-error' : '' }}">
         {!! Form::text('home_phone', null, ['id' => 'home_phone', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'home_phone'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'home_phone'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="address">Address
@@ -45,7 +44,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('address') ? ' has-error' : '' }}">
         {!! Form::text('address', null, ['id' => 'address', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'address'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'address'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">City
@@ -53,7 +54,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('city') ? ' has-error' : '' }}">
         {!! Form::text('city', null, ['id' => 'city', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'city'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'city'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="state">State
@@ -61,7 +64,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('state') ? ' has-error' : '' }}">
         {!! Form::text('state', null, ['id' => 'state', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'state'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'state'])
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">Zip Code
@@ -69,7 +74,9 @@
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('zip') ? ' has-error' : '' }}">
         {!! Form::text('zip', null, ['id' => 'zip', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
-    @include('modules.error-field', ['field' => 'zip'])
+    <div class="col-md-3 col-sm-3 col-xs-12">
+        @include('modules.error-field', ['field' => 'zip'])
+    </div>
 </div>
 <div class="form-group{{ $errors->has('group_id') ? ' has-error' : '' }}">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group_id">Group

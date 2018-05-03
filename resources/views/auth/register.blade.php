@@ -18,11 +18,11 @@
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
 
             <div class="form-group">
-                <label for="name" class="sr-only">{{ __('Name') }}</label>
+                <label for="name">{{ __('Name') }}</label>
 
                 <input id="name"
                        type="text"
-                       class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                       class="form-control{{ $errors->has('name') ? 'has-error' : '' }}"
                        placeholder="Name"
                        name="name"
                        value="{{ old('name') }}"
@@ -32,11 +32,11 @@
             </div>
 
             <div class="form-group">
-                <label for="email" class="sr-only">{{ __('E-Mail Address') }}</label>
+                <label for="email">{{ __('E-Mail Address') }}</label>
 
                 <input id="email"
                        type="email"
-                       class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                       class="form-control{{ $errors->has('email') ? ' has-error' : '' }}"
                        placeholder="Email"
                        name="email"
                        value="{{ old('email') }}"
@@ -47,11 +47,11 @@
             </div>
 
             <div class="form-group">
-                <label for="password" class="sr-only">{{ __('Password') }}</label>
+                <label for="password">{{ __('Password') }}</label>
 
                 <input id="password"
                        type="password"
-                       class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                       class="form-control{{ $errors->has('password') ? ' has-error' : '' }}"
                        placeholder="Password (min: 6)"
                        name="password"
                        required>
@@ -61,11 +61,11 @@
             </div>
 
             <div class="form-group">
-                <label for="password-confirm" class="sr-only">{{ __('Confirm Password') }}</label>
+                <label for="password-confirm">{{ __('Confirm Password') }}</label>
 
                 <input id="password-confirm"
                        type="password"
-                       class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
+                       class="form-control{{ $errors->has('password_confirmation') ? ' has-error' : '' }}"
                        placeholder="Confirm password"
                        name="password_confirmation"
                        required>

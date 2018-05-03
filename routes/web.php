@@ -11,13 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    if (Auth::user()) {
-        return view('home');
-    } else {
-        return view('welcome');
-    }
-});
+Route::get('/', function () { return view('home'); });
 
 Auth::routes();
 
@@ -33,12 +27,3 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/contacts/tags/{tag}', 'TagController@index');
 
 });
-
-//Route::get('contacts.search', 'ContactController@search')->name('contacts.search');
-//Route::get('contacts.index','ContactController@index')->name('contacts.index');
-//Route::get('contacts.add', 'ContactController@add')->name('contacts.add');
-//Route::get('contacts.edit','ContactController@edit')->name('contacts.edit');
-//Route::post('contacts.save','ContactController@save')->name('contacts.save');
-//Route::patch('contacts.update', 'ContactController@update')->name('contacts.update');
-//Route::delete('contacts.destroy', 'ContactController@destroy')->name('contacts.destroy');
-//
