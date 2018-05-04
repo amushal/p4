@@ -36,7 +36,6 @@ class ContactController extends Controller
             'contact' => new Contact(),
             'tags' => [],
         ]);
-        //return view('contacts.add');
     }
 
     public function edit($id)
@@ -51,8 +50,6 @@ class ContactController extends Controller
             return redirect('/contacts');
         }
 
-        //return view('contacts.edit', compact('contact'));
-
         return view('contacts.edit')->with([
             'groupsForDropdown' => Group::getForDropdown(),
             'tagsForCheckboxes' => Tag::getForCheckboxes(),
@@ -65,15 +62,15 @@ class ContactController extends Controller
     {
         # Custom validation messages
         $messages = [
-            //'group_id.required' => 'The group field is required.',
+            #'group_id.required' => 'The group field is required.',
             'required' => 'Required',
         ];
 
         $this->validate($request, [
             'name' => 'required|alpha_spaces|max:50',
             'email' => 'required|email',
-            'mobile_phone' => 'required|numeric:max:10',
-            'home_phone' => 'nullable|numeric:max:10',
+            'mobile_phone' => 'required|phone:US',
+            'home_phone' => 'nullable|phone:US',
             'address' => 'nullable|string|max:191',
             'city' => 'nullable|alpha_spaces|max:50',
             'state' => 'nullable|alpha_spaces|max:50',
@@ -81,7 +78,6 @@ class ContactController extends Controller
             'group_id' => 'required'
         ], $messages);
 
-        //$contact = Contact::create($request->all());
         $user = $request->user();
 
         # Save the contact to the database
@@ -108,12 +104,6 @@ class ContactController extends Controller
 
     public function update(Request $request, $id)
     {
-//        $contact_id->update($request->all());
-//
-//        flash($contact_id->name.' is updated.', 'success');
-//
-//        return redirect()->route('contacts.index');
-
         # Custom validation messages
         $messages = [
             'required' => 'Required',
@@ -122,8 +112,8 @@ class ContactController extends Controller
         $this->validate($request, [
             'name' => 'required|alpha_spaces|max:50',
             'email' => 'required|email',
-            'mobile_phone' => 'required|numeric:max:10',
-            'home_phone' => 'nullable|numeric:max:10',
+            'mobile_phone' => 'required|phone:US',
+            'home_phone' => 'nullable|phone:US',
             'address' => 'nullable|string|max:191',
             'city' => 'nullable|alpha_spaces|max:50',
             'state' => 'nullable|alpha_spaces|max:50',
@@ -146,7 +136,6 @@ class ContactController extends Controller
         $contact->tags()->sync($request->input('tags'));
         # Save edits
         $contact->update();
-//        $contact_id->update($contact);
 
         flash($contact->name . ' is updated.', 'success');
 

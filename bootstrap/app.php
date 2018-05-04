@@ -52,4 +52,7 @@ $app->singleton(
 |
 */
 
+$app->register(Propaganistas\LaravelPhone\PhoneServiceProvider::class);
+
+
 return $app;

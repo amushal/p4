@@ -14,16 +14,15 @@ class ContactsTableSeeder extends Seeder
      */
     public function run()
     {
-    //name, home, mobile, addr, city, state, zip, desc
         $contacts = [
-            ['Ala Mushal', 'ala@mushal.me', '858-222-3912','858-231-3526', '12190 Rolling Meadows Ct', 'San Diego', 'CA', '92128'],
-            ['Richard Roe', 'richard@gmail.com','274-621-2202','484-555-1053', '1272 Lakin Street', 'Poway', 'CA', '92064'],
-            ['John Smith', 'john@yahoo.com','313-555-3912','313-555-3526', '12361 Twin Peaks Lake Dr', 'Ann Arbor', 'MI', '48084'],
-            ['Jane Doe', 'jane@hotmail.com', '631-816-1673','734-384-1845', '2182 Terry Forge', 'San Diego', 'CA', '92128'],
-            ['Larry Loe', 'larry@hotmail.com', '610-555-3912','610-555-4629', '979 Kessler Lights', 'Plano', 'TX', '75075'],
-            ['Robert Marker', 'robert@hotmail.com', '469-555-3808','469-555-4629', '213 Nathanael Valley', 'Dayton', 'OH', '93017'],
-            ['Polly Ester', 'polly@hotmail.com', '310-555-3912','972-776-8423', '2380 Uriel Rapid', 'Los Angeles', 'CA', '92128'],
-            ['Mark Moe', 'mark@hotmail.com', '857-493-9718','734-936-9141', '1660 Helene Rapids', 'New Dameon', 'TN', '92128']
+            ['Ala Mushal', 'ala@mushal.me', '(858) 222-3912','(858) 231-3526', '12190 Rolling Meadows Ct', 'San Diego', 'CA', '92128'],
+            ['Richard Roe', 'richard@gmail.com','(274) 621-2202','(484) 555-1053', '1272 Lakin Street', 'Poway', 'CA', '92064'],
+            ['John Smith', 'john@yahoo.com','(313) 555-3912','(313) 555-3526', '12361 Twin Peaks Lake Dr', 'Ann Arbor', 'MI', '48084'],
+            ['Jane Doe', 'jane@hotmail.com', '(631) 816-1673','(734) 384-1845', '2182 Terry Forge', 'San Diego', 'CA', '92128'],
+            ['Larry Loe', 'larry@hotmail.com', '(610) 555-3912','(610) 555-4629', '979 Kessler Lights', 'Plano', 'TX', '75075'],
+            ['Robert Marker', 'robert@hotmail.com', '(469) 555-3808','(469) 555-4629', '213 Nathanael Valley', 'Dayton', 'OH', '93017'],
+            ['Polly Ester', 'polly@hotmail.com', '(310) 555-3912','(972) 776-8423', '2380 Uriel Rapid', 'Los Angeles', 'CA', '92128'],
+            ['Mark Moe', 'mark@hotmail.com', '(857) 493-9718','(734) 936-9141', '1660 Helene Rapids', 'New Dameon', 'TN', '92128']
         ];
         $count = count($contacts);
 

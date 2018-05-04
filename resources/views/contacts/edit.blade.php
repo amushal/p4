@@ -19,3 +19,7 @@
         </div>
     </div>
 @endsection
+
+@section('footer-scripts')
+    <script src="/js/custom.js"></script>
+@endsection

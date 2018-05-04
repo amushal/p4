@@ -8,6 +8,8 @@
 + Alpha with Space validation rule [Laravel validator for alphabetic characters and spaces](https://learninglaravel.net/laravel-validator-for-alphabetic-characters-and-spaces)
 + Laracast Flash [laracasts/flash](https://github.com/laracasts/flash)
 + Laravel Debug Bar [barryvdh/laravel-debugbar](https://github.com/barryvdh/laravel-debugbar)
++ Phone Number Validation [Propaganistas\LaravelPhone](https://github.com/Propaganistas/Laravel-Phone)
++ US Phone Input Mask [Stack Overflow](https://stackoverflow.com/questions/17651207/mask-us-phone-number-string-with-javascript)
 + Icons via [Font Awesome](https://fontawesome.com)
 
 ## Code style divergences
