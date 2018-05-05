@@ -24,7 +24,6 @@ class ContactController extends Controller
     public function index(Request $request, $contacts)
     {
         $tags = Tag::getForCheckboxes();
-
         return view('contacts.index', compact('contacts', 'tags'));
     }
 
@@ -80,9 +79,13 @@ class ContactController extends Controller
 
         $user = $request->user();
 
+        //Will manually associate group with Tag to save trip to database
+        #$group = Group::find($request->input('group'));
+
         # Save the contact to the database
         $contact = new Contact();
         $contact->name = $request->name;
+        #$contact->group()->associate($group); # <--- Associate the group with this contact
         $contact->group_id = $request->group_id;
         $contact->user_id = $user->id;
         $contact->mobile_phone = $request->mobile_phone;
@@ -169,5 +172,4 @@ class ContactController extends Controller
 
         return view('contacts.index', compact('contacts'));
     }
-
 }

@@ -7,10 +7,13 @@ use \App\Tag;
 
 class TagController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, Tag $tag)
     {
-
-
         $user = $request->user();
 
         if ($user) {
@@ -19,14 +22,10 @@ class TagController extends Controller
             } else {
                 $contacts = $tag->contacts()->orderBy('name')->paginate(5);
             }
-
         } else {
-            return $tag;
-
             $contacts = [];
         }
 
         return view('contacts.index', compact('contacts'));
-
     }
 }

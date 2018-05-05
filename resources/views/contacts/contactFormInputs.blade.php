@@ -24,7 +24,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile_phone">Mobile *
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('mobile_phone') ? ' has-error' : '' }}">
-        {!! Form::text('mobile_phone', null, ['id' => 'mobile_phone', 'placeholder' => '10 digit number', 'class' => 'form-control col-md-7 col-xs-12']) !!}
+        {!! Form::text('mobile_phone', null, ['id' => 'mobile_phone', 'placeholder' => '(555) 555-5555', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12">
         @include('modules.error-field', ['field' => 'mobile_phone'])
@@ -34,7 +34,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="home_phone">Home Phone
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('home_phone') ? ' has-error' : '' }}">
-        {!! Form::text('home_phone', null, ['id' => 'home_phone', 'placeholder' => '10 digit number', 'class' => 'form-control col-md-7 col-xs-12']) !!}
+        {!! Form::text('home_phone', null, ['id' => 'home_phone', 'placeholder' => '(555) 555-5555', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12">
         @include('modules.error-field', ['field' => 'home_phone'])
@@ -74,7 +74,7 @@
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="zip">Zip Code
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12{{ $errors->has('zip') ? ' has-error' : '' }}">
-        {!! Form::text('zip', null, ['id' => 'zip', 'placeholder' => '5 digit Zip Code', 'class' => 'form-control col-md-7 col-xs-12']) !!}
+        {!! Form::text('zip', null, ['id' => 'zip', 'placeholder' => '12345', 'class' => 'form-control col-md-7 col-xs-12']) !!}
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12">
         @include('modules.error-field', ['field' => 'zip'])

@@ -15,7 +15,7 @@ Route::get('/', function () { return view('home'); });
 
 Auth::routes();
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+//Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/home', 'HomeController@index');
     Route::get('contacts/search', 'ContactController@search')->name('contacts.search');
     Route::get('/contacts', 'TagController@index')->name('contacts.index');
@@ -26,4 +26,4 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::delete('/contacts/{id}', 'ContactController@destroy')->name('contacts.destroy');
     Route::get('/contacts/tags/{tag}', 'TagController@index');
 
-});
+//});

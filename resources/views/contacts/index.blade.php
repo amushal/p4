@@ -27,10 +27,10 @@
                                 <th style="width: 15%">Name</th>
                                 <th>email</th>
 
-                                <th style="width: 15%">Mobile</th>
-                                <th style="width: 15%">Home</th>
+                                <th style="width: 12%">Mobile</th>
+                                <th style="width: 12%">Home</th>
 
-                                <th style="width: 20%">Address</th>
+                                <th style="width: 25%">Address</th>
                                 <th style="width: 10%">City</th>
                                 <th>State</th>
                                 <th>Zip</th>
