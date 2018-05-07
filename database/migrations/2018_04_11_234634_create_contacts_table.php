@@ -18,11 +18,11 @@ class CreateContactsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('email')->nullable();
-            $table->string('home_phone')->nullable();
             $table->string('mobile_phone')->nullable();
+            $table->string('home_phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('state')->nullable();
             $table->string('city')->nullable();
+            $table->string('state')->nullable();
             $table->string('zip')->nullable();
         });
     }

@@ -34,15 +34,6 @@ class User extends Authenticatable
 
     public function getTags()
     {
-        return $this->contacts->pluck('tags')->collapse()->unique('name')->pluck('name');
+        return $this->contacts->pluck('tags')->collapse()->unique('name')->sortBy('name')->pluck('name');
     }
-
-//    public function groups()
-//    {
-//        return $this->hasMany('App\Group');
-//    }
-//    public function tags()
-//    {
-//        return $this->hasMany('App\Tag');
-//    }
 }

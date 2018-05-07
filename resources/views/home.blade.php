@@ -24,7 +24,7 @@
     </p>
 
     @if (Auth::guest())
-        <p><a class="btn btn-lg btn-success" href="{{ route('login') }}" role="button">Get started</a></p>
+        <p><a class="btn btn-lg btn-primary" href="{{ route('login') }}" role="button">Get started</a></p>
     @endif
 
 @endsection

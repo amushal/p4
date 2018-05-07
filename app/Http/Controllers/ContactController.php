@@ -18,17 +18,12 @@ class ContactController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * @return \Illuminate\Http\Response
-     */
-//    public function index($contacts)
-//    {
-//        $tags = Tag::getForCheckboxes();
-//        return view('contacts.index', compact('contacts', 'tags'));
-//    }
-
     public function index(Request $request)
     {
+
+        #$tags = Tag::getForCheckboxes();
+        #return view('contacts.index', compact('contacts', 'tags'));
+
         $user = $request->user();
         $contacts = $user->contacts()->orderBy('name')->get();
         return view('contacts.index')->with([
