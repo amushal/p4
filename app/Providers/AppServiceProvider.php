@@ -18,9 +18,15 @@ class AppServiceProvider extends ServiceProvider
 
         //Cache all tags for menu
         view()->composer('layouts.app', function($view) {
-            $tags = \App\Tag::has('contacts')->pluck('name');
-
-            $view -> with(compact('tags'));
+            //$tags = \App\Tag::has('contacts')->pluck('name');
+            //$user = \App\User::with('contacts.tags')->find(1); // todo: \App\Auth::user();
+            if (\Auth::check()) {
+                $user_id = \Auth::user()->id;
+                $user = \App\User::with('contacts.tags')->find($user_id);
+                $tags = $user->getTags();
+                //dd($user->getTags());
+                $view->with(compact('tags'));
+            }
         });
 
         //Add this custom validation rule.

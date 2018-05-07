@@ -31,4 +31,18 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Contact');
     }
+
+    public function getTags()
+    {
+        return $this->contacts->pluck('tags')->collapse()->unique('name')->pluck('name');
+    }
+
+//    public function groups()
+//    {
+//        return $this->hasMany('App\Group');
+//    }
+//    public function tags()
+//    {
+//        return $this->hasMany('App\Tag');
+//    }
 }

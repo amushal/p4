@@ -21,10 +21,19 @@ class ContactController extends Controller
     /**
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $contacts)
+//    public function index($contacts)
+//    {
+//        $tags = Tag::getForCheckboxes();
+//        return view('contacts.index', compact('contacts', 'tags'));
+//    }
+
+    public function index(Request $request)
     {
-        $tags = Tag::getForCheckboxes();
-        return view('contacts.index', compact('contacts', 'tags'));
+        $user = $request->user();
+        $contacts = $user->contacts()->orderBy('name')->get();
+        return view('contacts.index')->with([
+            'contacts' => $contacts
+        ]);
     }
 
     public function create()
@@ -160,7 +169,10 @@ class ContactController extends Controller
 
     public function search(Request $request)
     {
-        $contacts = Contact::where('name', 'LIKE', '%' . $request->get('search') . '%')
+
+        $user = $request->user();
+
+        $contacts = $user->contacts()->where('name', 'LIKE', '%' . $request->get('search') . '%')
             ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%')
             ->orWhere('mobile_phone', 'LIKE', '%' . $request->get('search') . '%')
             ->orWhere('home_phone', 'LIKE', '%' . $request->get('search') . '%')
@@ -170,6 +182,7 @@ class ContactController extends Controller
             ->orWhere('zip', 'LIKE', '%' . $request->get('search') . '%')
             ->paginate(5);
 
+        //dd($contacts);
         return view('contacts.index', compact('contacts'));
     }
 }

@@ -27,7 +27,7 @@ class ContactsTableSeeder extends Seeder
         $count = count($contacts);
 
         //todo: use generic test/guest account
-        $user_id = User::where('name', '=', 'Ala Mushal')->pluck('id')->first(); //temp
+        $user_id = User::where('name', '=', 'Jill Harvard')->pluck('id')->first(); //temp
 
         # Find that author in the authors table
         //$name = $contacts[0];

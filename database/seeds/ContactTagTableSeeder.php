@@ -12,7 +12,8 @@ class ContactTagTableSeeder extends Seeder
             'Ala Mushal' => ['Red'],
             'Jane Doe' => ['Green', 'Red'],
             'Richard Roe' => ['Yellow'],
-            'John Smith' => ['Green']
+            'John Smith' => ['Green'],
+            'Robert Marker' => ['Blue']
         ];
         # Now loop through the above array, creating a new pivot for each contact to tag
         foreach ($contacts as $name => $tags) {

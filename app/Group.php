@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     /*
-     * Define the one to many relationship with authors
+     * Define the one to many relationship with contacts
      */
     public function contacts()
     {
@@ -12,6 +12,16 @@ class Group extends Model
         # Define a one-to-many relationship.
         return $this->hasMany('App\Contact');
     }
+    /*
+     * Define the one to many relationship with users
+     */
+//    public function users()
+//    {
+//        # Group has many Contacts
+//        # Define a one-to-many relationship.
+//        return $this->hasMany('App\User');
+//    }
+
     /**
      * Return an array of groups where key = group id and value = groups name
      */

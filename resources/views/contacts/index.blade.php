@@ -5,7 +5,7 @@
 @endsection
 
 @section('page-header')
-    <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-success">Add Contact</a>
+    <a href="{{ route('contacts.create') }}" class="btn btn-sm btn-primary">Add Contact</a>
 @endsection
 
 @section('page-content')
