@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-xs-12">
                             Showing {{ $contacts->firstItem() }} to {{ $contacts->lastItem() }} of {{ $contacts->total() }} entries
-                            <span class="pull-right">{{ $contacts->setPath('')->appends($_GET)->links() }}</span>
+                            <div class="pull-right">{{ $contacts->setPath('')->appends($_GET)->links() }}</div>
                         </div>
                     </div>
                 </div>
