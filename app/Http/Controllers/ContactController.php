@@ -20,12 +20,12 @@ class ContactController extends Controller
 
     public function index(Request $request)
     {
-
         #$tags = Tag::getForCheckboxes();
         #return view('contacts.index', compact('contacts', 'tags'));
 
         $user = $request->user();
         $contacts = $user->contacts()->orderBy('name')->get();
+
         return view('contacts.index')->with([
             'contacts' => $contacts
         ]);
@@ -164,18 +164,19 @@ class ContactController extends Controller
 
     public function search(Request $request)
     {
+        $user = \Auth::user(); //$request->user();
 
-        $user = $request->user();
-
-        $contacts = $user->contacts()->where('name', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('mobile_phone', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('home_phone', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('address', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('city', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('state', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('zip', 'LIKE', '%' . $request->get('search') . '%')
-            ->paginate(5);
+        $search = $request->get('search');
+        $contacts = $user->contacts()->where(function ($query) use ($search) {
+            $query->where('name', 'LIKE', '%' . $search . '%')
+                ->orWhere('email', 'LIKE', '%' . $search . '%')
+                ->orWhere('mobile_phone', 'LIKE', '%' . $search . '%')
+                ->orWhere('home_phone', 'LIKE', '%' . $search . '%')
+                ->orWhere('address', 'LIKE', '%' . $search . '%')
+                ->orWhere('city', 'LIKE', '%' . $search . '%')
+                ->orWhere('state', 'LIKE', '%' . $search . '%')
+                ->orWhere('zip', 'LIKE', '%' . $search . '%');
+        })->paginate(5);
 
         //dd($contacts);
         return view('contacts.index', compact('contacts'));
