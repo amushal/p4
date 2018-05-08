@@ -104,6 +104,7 @@
                     <a href="{{route('contacts.index')}}"><i class="fa fa-th-list fa-fw"></i> Contacts</a>
                 </li>
                 @if (Auth::check())
+                    @if (count($tags)>0)
                     <li>
                         <a><i class="fa fa-th-list ffa fa-tags"></i> Tags</a>
                             <ul>
@@ -125,6 +126,7 @@
                         {{--</li>--}}
                         {{--</ul>--}}
                     </li>
+                    @endif
                 @endif
 
             </ul>
